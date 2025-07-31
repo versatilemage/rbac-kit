@@ -1,24 +1,21 @@
 import express from 'express';
-import { defineRoles, requirePermission } from 'rbac-kit';
+import { requirePermission } from 'rbac-kit';
+import { getRolePermissions } from './roles';
 
 const app = express();
 app.use(express.json());
 
-const roles = defineRoles({
-  admin: ['*:*:*'],
-  recruiter: ['create:job', 'edit:job:title'],
-  applicant: ['create:application']
-});
+// 🔥 Load roles.json from root
+// const roles = loadRolesFromFile('roles.json');
 
 const getUserRole = (req: express.Request) => {
-  // For demo purposes; normally you'd extract this from JWT/session
   return req.headers['x-role'] as string || 'guest';
 };
 
 app.get(
   '/jobs',
   requirePermission({
-    rolePermissions: roles,
+    rolePermissions: getRolePermissions(),
     getUserRole,
     action: 'edit',
     resource: 'job',
@@ -29,6 +26,20 @@ app.get(
   }
 );
 
+app.get(
+  '/logs',
+  requirePermission({
+    rolePermissions: getRolePermissions(),
+    getUserRole,
+    action: 'read',
+    resource: 'internal',
+    feature: 'logs'
+  }),
+  (req, res) => {
+    res.send('You are allowed to read the logs.');
+  }
+);
+
 app.listen(3000, () => {
-  console.log('✅ Server running on http://localhost:3000');
+  console.log('🚀 Server running on http://localhost:3000');
 });

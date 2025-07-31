@@ -1,0 +1,13 @@
+{
+  "admin": ["*:*:*"],
+  "super-admin": {
+    "extends": ["admin"],
+    "permissions": ["read:internal:logs"]
+  },
+  "recruiter": {
+    "permissions": [
+      "create:job",
+      "edit:job:title"
+    ]
+  }
+}
