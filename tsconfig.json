@@ -1,0 +1,11 @@
+{
+  "files": [],
+  "references": [],
+  "include": ["packages/*/src"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "rbac-kit": ["packages/core/src"]
+    }
+  }
+}
