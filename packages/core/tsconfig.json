@@ -6,10 +6,11 @@
     "declaration": true,
     "outDir": "dist",
     "strict": true,
-    "moduleResolution": "Node",
+    "moduleResolution": "node",
+    "types": ["node"],
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["src"]
+  "include": ["src", "bin"]
 }

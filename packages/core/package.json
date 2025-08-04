@@ -9,15 +9,29 @@
       "require": "./dist/index.js"
     }
   },
+  "bin": {
+    "rbac": "./dist/bin/cli.js"
+  },
   "scripts": {
     "build": "tsc"
   },
   "devDependencies": {
     "@types/express": "^5.0.3",
+    "@types/node": "^24.1.0",
     "express": "^5.1.0",
+    "ts-node-dev": "^2.0.0",
     "typescript": "^5.8.3"
   },
   "peerDependencies": {
     "express": "^5.1.0"
-  }
+  },
+  "dependencies": {
+    "commander": "^14.0.0"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": ["rbac", "cli", "roles", "permissions", "typescript", "access-control"],
+  "author": "Mohammed Syed Awadh",
+  "license": "MIT"
 }
