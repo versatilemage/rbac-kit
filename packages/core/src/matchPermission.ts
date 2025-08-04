@@ -1,16 +1,22 @@
 import { PermissionKey } from './types';
 
-/**
- * Match required permission with a granted one.
- */
 export function matchPermission(required: PermissionKey, granted: PermissionKey): boolean {
+  const allowedActions = ['create', 'read', 'edit', 'delete', '*'];
+
   const reqParts = required.split(':');
   const grantedParts = granted.split(':');
 
-  for (let i = 0; i < reqParts.length; i++) {
-    if (grantedParts[i] === '*') continue;
-    if (grantedParts[i] !== reqParts[i]) return false;
+  const action = reqParts[0];
+  if (!allowedActions.includes(action)) return false;
+
+  for (let i = 0; i < 3; i++) {
+    const grantedPart = grantedParts[i] || '*';
+    const requiredPart = reqParts[i] || '';
+
+    if (grantedPart === '*') continue;
+    if (grantedPart !== requiredPart) return false;
   }
 
   return true;
 }
+

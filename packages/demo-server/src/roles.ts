@@ -4,7 +4,6 @@ import path from 'path';
 
 let rolePermissions = loadRolesFromFile('roles.json');
 
-// Watch roles.json in dev
 if (process.env.NODE_ENV !== 'production') {
   const watcher = chokidar.watch(path.resolve(process.cwd(), 'roles.json'), {
     ignoreInitial: true

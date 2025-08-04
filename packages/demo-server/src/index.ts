@@ -5,9 +5,6 @@ import { getRolePermissions } from './roles';
 const app = express();
 app.use(express.json());
 
-// 🔥 Load roles.json from root
-// const roles = loadRolesFromFile('roles.json');
-
 const getUserRole = (req: express.Request) => {
   return req.headers['x-role'] as string || 'guest';
 };

@@ -1,8 +1,14 @@
 {
-  "admin": ["*:*:*"],
+  "admin": [
+    "*:*:*"
+  ],
   "super-admin": {
-    "extends": ["admin"],
-    "permissions": ["read:internal:logs"]
+    "extends": [
+      "admin"
+    ],
+    "permissions": [
+      "read:internal:logs"
+    ]
   },
   "recruiter": {
     "permissions": [
