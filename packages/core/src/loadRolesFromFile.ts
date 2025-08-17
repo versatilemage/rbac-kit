@@ -1,10 +1,12 @@
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import { RolePermissions } from './types';
 import { resolveInheritedRoles } from './resolveInheritedRoles';
 
 export function loadRolesFromFile(relativePath: string): RolePermissions {
-  const absolutePath = path.resolve(process.cwd(), relativePath);
+  const __dirname = path.dirname(fileURLToPath(import.meta.url));
+  const absolutePath = path.resolve(__dirname, relativePath);
 
   if (!fs.existsSync(absolutePath)) {
     throw new Error(`Roles file not found at ${absolutePath}`);
